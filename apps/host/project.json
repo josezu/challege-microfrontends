@@ -5,6 +5,15 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "dev": {
+      "executor": "@nrwl/next:server",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "buildTarget": "host:build",
+        "dev": true,
+        "port": 3000
+      }
+    },
     "build": {
       "executor": "@nrwl/next:build",
       "outputs": ["{options.outputPath}"],

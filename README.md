@@ -12,11 +12,17 @@ comes with a LSP for Vim users.
 
 ## Start the application
 
-Run `npx nx dev host` to start the development server. Happy coding!
+Don't forget to setup the following .env in each app
+Run `npx nx dev host` to start the development server, it will be the HOST app.
+Run `npx nx dev actions` to start the development server, it will be the REMOTE app that is responsable of button actions.
+Run `npx nx dev list` to start the development server, it will be the REMOTE app that is responsable of show the pokemons list.
+Run `npx nx dev header` to start the development server, it will be the REMOTE app, that is responsable to show a header logo.
+
+Also it could be up with `npx nx run-many --target=dev`
 
 ## Build for production
 
-Run `npx nx build host` to build the application. The build artifacts are stored in the output directory (e.g. `dist/` or `build/`), ready to be deployed.
+Run `npx nx run-many --target=build` to build the application. The build artifacts are stored in the output directory (e.g. `dist/` or `build/`), ready to be deployed.
 
 ## Running tasks
 
@@ -38,15 +44,11 @@ npx nx run-many -t <target1> <target2>
 npx nx run-many -t <target1> <target2> -p <proj1> <proj2>
 ```
 
-Targets can be defined in the `package.json` or `projects.json`. Learn more [in the docs](https://nx.dev/features/run-tasks).
+## Storybook library
 
-## Set up CI!
+It used cross remotes app, using a shared library
 
-Nx comes with local caching already built-in (check your `nx.json`). On CI you might want to go a step further.
-
-- [Set up remote caching](https://nx.dev/features/share-your-cache)
-- [Set up task distribution across multiple machines](https://nx.dev/nx-cloud/features/distribute-task-execution)
-- [Learn more how to setup CI](https://nx.dev/recipes/ci)
+`npx nx run ui:storybook`
 
 ## Explore the project graph
 
@@ -55,8 +57,4 @@ It will show tasks that you can run with Nx.
 
 - [Learn more about Exploring the Project Graph](https://nx.dev/core-features/explore-graph)
 
-## Connect with us!
 
-- [Join the community](https://nx.dev/community)
-- [Subscribe to the Nx Youtube Channel](https://www.youtube.com/@nxdevtools)
-- [Follow us on Twitter](https://twitter.com/nxdevtools)
