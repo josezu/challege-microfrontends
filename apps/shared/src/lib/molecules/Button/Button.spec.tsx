@@ -1,35 +1,28 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import Button from './Button';
 
 describe('Button', () => {
   it('should render successfully', () => {
-    const { container } = render(<Button text="text" srcImage="image.png" />);
+    const onClick = jest.fn();
+
+    const { container } = render(<Button text="text" onClick={onClick} />);
 
     expect(container).toBeTruthy();
   });
 
-  it('should render a card component with an image and text', () => {
-    const text = 'Sample text';
-    const srcImage = 'sample-image.jpg';
-    const customStyle = 'custom-style';
-    const type = 'sample-type';
+  it('should render a button element with provided text and custom styles', () => {
+    const text = 'Click me';
+    const customStyle = 'custom-button';
+    const onClick = jest.fn();
 
-    const { getByTestId } = render(
-      <Button
-        text={text}
-        srcImage={srcImage}
-        customStyle={customStyle}
-        type={type}
-      />
+    const { container } = render(
+      <Button text={text} customStyle={customStyle} onClick={onClick} />
     );
 
-    const cardElement = getByTestId('card');
-    const imageElement = getByTestId('image');
-    const textElement = getByTestId('text');
-
-    expect(cardElement).toBeDefined();
-    expect(imageElement).toBeDefined();
-    expect(textElement).toBeDefined();
+    const buttonElement = screen.getByTestId('button');
+    expect(buttonElement).toBeDefined();
+    expect(container.textContent).toEqual(text);
+    expect(buttonElement?.getAttribute('class')).toContain(customStyle);
   });
 });
